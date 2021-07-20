@@ -1,17 +1,17 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import json
-
+import os
 
 class PlaylistInteractor:
     def __init__(self, song):
-        with open('secrets.json', 'r') as f:
-            content = json.load(f)
+        # with open('secrets.json', 'r') as f:
+        #     content = json.load(f)
 
         self.SPOTIFY = spotipy.Spotify(
             auth_manager= SpotifyOAuth(
-                client_id= content["spotify_client_id"],
-                client_secret= content["spotify_client_secret"],
+                client_id= os.environ["spotify_client_id"],
+                client_secret= os.environ["spotify_client_secret"],
                 redirect_uri= "http://localhost:8888/callback/",
                 scope="playlist-modify-public"                
             )

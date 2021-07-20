@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 from playlistInteractor import PlaylistInteractor
+import os
 
 bot = commands.Bot(command_prefix= '^')
 
@@ -34,7 +35,7 @@ async def on_message(msg: discord.Message):
             await channel.send(f"That is not a spotify song URL, please provide a Valid **SPOTIFY** URL")
             
     
-with open(r"discord_auth.txt", "r") as f:
-    token = f.read().splitlines()
+# with open(r"discord_auth.txt", "r") as f:
+    # token = f.read().splitlines()
     
-bot.run(token[0])
+bot.run(os.environ['TOKEN'])

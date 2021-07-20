@@ -1,5 +1,3 @@
-from discord.ext import commands
-import discord
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import json
@@ -14,7 +12,7 @@ class PlaylistInteractor:
             auth_manager= SpotifyOAuth(
                 client_id= content["spotify_client_id"],
                 client_secret= content["spotify_client_secret"],
-                redirect_uri= "http://localhost",
+                redirect_uri= "http://localhost:8888/callback/",
                 scope="playlist-modify-public"                
             )
         )
@@ -25,7 +23,6 @@ class PlaylistInteractor:
         self.SPOTIFY.playlist_add_items(
             self.PLAYLIST_ID, self.song
         ) 
-        print("song_added")
         
 if __name__ == "__main__":
     interactor = PlaylistInteractor(["75ls0gurX68lUmMjE7QcsE"])
